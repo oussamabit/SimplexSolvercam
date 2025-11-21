@@ -1,24 +1,42 @@
-QT       += core gui
+QT += core gui widgets network multimedia multimediawidgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+CONFIG += c++11
 
-CONFIG += c++17
-
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+TARGET = SimplexGUI
+TEMPLATE = app
 
 SOURCES += \
+    dualsimplexsolver.cpp \
+    dynamicpolyhedronsolver.cpp \
     main.cpp \
-    mainwindow.cpp
+    MainWindow.cpp \
+    polyhedronsolver.cpp \
+    realpolyhedronwidget.cpp \
+    simplexsolver.cpp \
+    visualizationdialog.cpp \
+    ocrprocessor.cpp \
+    cameracapture.cpp
 
 HEADERS += \
-    mainwindow.h
+    MainWindow.h \
+    dualsimplexsolver.h \
+    dynamicpolyhedronsolver.h \
+    polyhedronsolver.h \
+    realpolyhedronwidget.h \
+    simplexsolver.h \
+    visualizationdialog.h \
+    ocrprocessor.h \
+    cameracapture.h
 
-FORMS += \
-    mainwindow.ui
+# Add C++17 features if needed
+CONFIG += c++17
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+# For better debugging
+CONFIG += debug
+CONFIG += console
+
+# Network for HTTP requests
+QT += network
+
+target.path = $$[QT_INSTALL_EXAMPLES]/widgets/SimplexGUI
+INSTALLS += target
